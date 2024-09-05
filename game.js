@@ -6,7 +6,7 @@ let currentCharacter = 0;
 let ownedCharacters = [0];  // Початковий персонаж є купленим за замовчуванням
 let fuel = 100; // Початковий рівень палива
 let maxFuel = 100; // Максимальний рівень палива
-let fuelRecoveryInterval = 300; // Інтервал відновлення палива в мілісекундах
+let fuelRecoveryInterval = 100; // Інтервал відновлення палива в мілісекундах
 const characters = [
     { name: "Character 1", img: "./photo/a8bbf7fc-3591-4cbe-960f-efd348858748.png", cost: 0, power: 1, fuelBonus: 0 },
     { name: "Character 2", img: "./photo/OIG1.png", cost: 200, power: 5, fuelBonus: 50 },
@@ -43,6 +43,19 @@ function applyDeviceStyles() {
         // Інші стилі для комп'ютерів
     }
 }
+
+function upgradeFuelRecovery() {
+    if (coins >= fuelUpgradeCost) {
+        coins -= fuelUpgradeCost;
+        fuelRecoveryInterval += 1; // Збільшуємо швидкість відновлення палива
+        fuelUpgradeCost *= 2; // Збільшуємо вартість наступної прокачки
+        document.getElementById('coinCount').innerText = coins;
+        document.getElementById('fuelUpgradeBtn').innerText = `Upgrade Fuel Recovery (Cost: ${fuelUpgradeCost} Coins)`;
+    } else {
+        alert("Not enough coins!");
+    }
+}
+
 
 function initCharacterShop() {
     const shop = document.getElementById('characterShop');
@@ -161,7 +174,6 @@ function recoverFuel() {
         updateFuelBar();
     }
 }
-
 
 
 // Відновлення палива кожні fuelRecoveryInterval мілісекунд
