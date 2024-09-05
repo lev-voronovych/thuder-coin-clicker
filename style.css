@@ -162,3 +162,25 @@ button:hover {
         font-size: 1em;
     }
 }
+
+#fuelContainer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#fuelBar {
+    width: 300px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: #ddd;
+}
+
+#fuelBar::-webkit-progress-value {
+    background-color: #4caf50;
+    border-radius: 10px;
+}
+
+#fuelBar::-moz-progress-bar {
+    background-color: #4caf50;
+    border-radius: 10px;
+}

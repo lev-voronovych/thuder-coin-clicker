@@ -1,18 +1,21 @@
 let coins = 0;
 let clickPower = 1;
 let upgradeCost = 100;
+let fuelUpgradeCost = 500; // Вартість прокачки швидкості відновлення палива
 let currentCharacter = 0;
 let ownedCharacters = [0];  // Початковий персонаж є купленим за замовчуванням
-
+let fuel = 100; // Початковий рівень палива
+let maxFuel = 100; // Максимальний рівень палива
+let fuelRecoveryInterval = 500; // Інтервал відновлення палива в мілісекундах
 const characters = [
-    { name: "Character 1", img: "./photo/a8bbf7fc-3591-4cbe-960f-efd348858748.png", cost: 0, power: 1 },
-    { name: "Character 2", img: "./photo/OIG1.png", cost: +200, power: 5 },
-    { name: "Character 3", img: "./photo/OI1.png.jpg", cost: 500, power: 10 },
-    { name: "Character 4", img: "./photo/1223.png", cost: 1000, power: 20 },
-    { name: "Character 5", img: "./photo/11111.png", cost: 2000, power: 50 },
-    { name: "Character 6", img: "./photo/12321`2.png", cost: 5000, power: 100 },
-    { name: "Character 7", img: "./photo/123123214342343242343423.png", cost: 10000, power: 200 },
-    { name: "Character 8", img: "./photo/1111111111111111111111111111111111111111111111111111111111.png", cost: 50000, power: 500 },
+    { name: "Character 1", img: "./photo/a8bbf7fc-3591-4cbe-960f-efd348858748.png", cost: 0, power: 1, fuelBonus: 0 },
+    { name: "Character 2", img: "./photo/OIG1.png", cost: 200, power: 5, fuelBonus: 50 },
+    { name: "Character 3", img: "./photo/OI1.png.jpg", cost: 500, power: 10, fuelBonus: 100 },
+    { name: "Character 4", img: "./photo/1223.png", cost: 1000, power: 20, fuelBonus: 200 },
+    { name: "Character 5", img: "./photo/11111.png", cost: 2000, power: 50, fuelBonus: 300 },
+    { name: "Character 6", img: "./photo/12321`2.png", cost: 5000, power: 100, fuelBonus: 500 },
+    { name: "Character 7", img: "./photo/123123214342343242343423.png", cost: 10000, power: 200, fuelBonus: 1000 },
+    { name: "Character 8", img: "./photo/1111111111111111111111111111111111111111111111111111111111.png", cost: 50000, power: 500, fuelBonus: 2000 },
 ];
 
 // Функція для визначення типу пристрою
@@ -127,6 +130,41 @@ function selectCharacter(index) {
     document.getElementById('character').src = character.img;
     document.getElementById('clickPower').innerText = clickPower;
 }
+
+
+const fuelDecreaseRate = 5; // Скільки палива витрачається за один клік
+const fuelRecoveryRate = 1; // Скільки палива відновлюється за одиницю часу
+
+
+function addCoins() {
+    if (fuel > 0) {
+        coins += clickPower;
+        fuel -= fuelDecreaseRate; // Зменшуємо паливо на кожен клік
+        if (fuel < 0) fuel = 0; // Не дозволяємо паливу бути меншим за 0
+        updateFuelBar(); // Оновлюємо шкалу палива
+        document.getElementById('coinCount').innerText = coins;
+        showCoinGain();
+    } else {
+        alert("Out of fuel! Wait for it to refill.");
+    }
+}
+
+function updateFuelBar() {
+    document.getElementById('fuelBar').value = fuel;
+}
+
+// Функція для поступового відновлення палива
+function recoverFuel() {
+    if (fuel < 100) {
+        fuel += fuelRecoveryRate;
+        if (fuel > 100) fuel = 100; // Не дозволяємо паливу перевищувати 100
+        updateFuelBar();
+    }
+}
+
+// Відновлення палива кожні fuelRecoveryInterval мілісекунд
+setInterval(recoverFuel, fuelRecoveryInterval);
+
 
 // Ініціалізація після завантаження сторінки
 document.addEventListener('DOMContentLoaded', (event) => {
