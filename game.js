@@ -6,7 +6,7 @@ let ownedCharacters = [0];  // Початковий персонаж є купл
 
 const characters = [
     { name: "Character 1", img: "./photo/a8bbf7fc-3591-4cbe-960f-efd348858748.png", cost: 0, power: 1 },
-    { name: "Character 2", img: "./photo/OIG1.png", cost: 200, power: 5 },
+    { name: "Character 2", img: "./photo/OIG1.png", cost: +200, power: 5 },
     { name: "Character 3", img: "./photo/OI1.png.jpg", cost: 500, power: 10 },
     { name: "Character 4", img: "./photo/1223.png", cost: 1000, power: 20 },
     { name: "Character 5", img: "./photo/11111.png", cost: 2000, power: 50 },
@@ -15,7 +15,32 @@ const characters = [
     { name: "Character 8", img: "./photo/1111111111111111111111111111111111111111111111111111111111.png", cost: 50000, power: 500 },
 ];
 
-// Ініціалізація магазину персонажів
+// Функція для визначення типу пристрою
+function detectDevice() {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const screenWidth = window.innerWidth;
+
+    if (isMobile || screenWidth < 768) {
+        return 'mobile';
+    } else {
+        return 'desktop';
+    }
+}
+
+// Функція для застосування стилів залежно від пристрою
+function applyDeviceStyles() {
+    const device = detectDevice();
+    if (device === 'mobile') {
+        document.body.style.fontSize = '14px';
+        document.getElementById('characterShop').style.gridTemplateColumns = 'repeat(2, 1fr)';
+        // Інші стилі для мобільних пристроїв
+    } else {
+        document.body.style.fontSize = '16px';
+        document.getElementById('characterShop').style.gridTemplateColumns = 'repeat(4, 1fr)';
+        // Інші стилі для комп'ютерів
+    }
+}
+
 function initCharacterShop() {
     const shop = document.getElementById('characterShop');
     characters.forEach((character, index) => {
@@ -103,8 +128,9 @@ function selectCharacter(index) {
     document.getElementById('clickPower').innerText = clickPower;
 }
 
-// Ініціалізація магазину після завантаження сторінки
+// Ініціалізація після завантаження сторінки
 document.addEventListener('DOMContentLoaded', (event) => {
+    applyDeviceStyles();  // Застосовуємо стилі для відповідного пристрою
     initCharacterShop();
     updateOwnedCharacters();  // Оновлюємо список персонажів на початку гри
 });

@@ -96,8 +96,8 @@ button:hover {
 }
 
 #characterShop {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
@@ -122,4 +122,43 @@ button:hover {
     margin: 10px 0 0 0;
     font-size: 1.2em;
     color: #2d5986;
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    #game {
+        width: 90%;
+        margin-top: 30px;
+        padding: 15px;
+    }
+
+    #character {
+        width: 150px;
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    #characterShop {
+        grid-template-columns: repeat(2, 1fr);
+        /* Менша кількість колонок для мобільних пристроїв */
+    }
+
+    .characterItem img {
+        width: 80px;
+    }
+
+    .characterItem p {
+        font-size: 1em;
+    }
 }
