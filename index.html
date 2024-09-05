@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thunder Coin Clicker</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Thunder Coin Clicker</h1>
+    <div id="game">
+        <img id="character" src="./photo/a8bbf7fc-3591-4cbe-960f-efd348858748.png" alt="Character" onclick="addCoins()">
+        <p>Thunder Coins: <span id="coinCount">0</span></p>
+        <button onclick="upgradeClicks()">Upgrade Clicks (Cost: 100 Coins)</button>
+        <p>Click Power: <span id="clickPower">1</span></p>
+        <div id="characters">
+            <h2>Buy New Characters</h2>
+            <div id="characterShop"></div>
+            <div id="ownedCharacters"></div>
+        </div>
+    </div>
+    <script src="./game.js"></script>
+</body>
+</html>

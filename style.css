@@ -1,0 +1,125 @@
+/* Загальний стиль сторінки */
+body {
+    background-color: #f0f4f8;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Заголовок гри */
+h1 {
+    color: #4b79a1;
+    font-size: 3em;
+    margin-top: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Стилізація гри */
+#game {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Персонаж */
+#character {
+    width: 250px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+#character:hover {
+    transform: scale(1.1);
+    /* Збільшується при наведенні */
+}
+
+/* Стилізація тексту */
+p {
+    font-size: 1.5em;
+    color: #333;
+    margin: 20px 0;
+}
+
+/* Стилізація кнопок */
+button {
+    background-color: #4b79a1;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #375a7f;
+}
+
+/* Стилізація кількості монет та сили кліка */
+#coinCount,
+#clickPower {
+    font-weight: bold;
+    color: #2d5986;
+}
+
+/* Анімація при кліку на персонажа */
+@keyframes coinPop {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+#coinGain {
+    position: absolute;
+    color: #4b79a1;
+    font-size: 1.5em;
+    font-weight: bold;
+    animation: coinPop 0.5s forwards;
+}
+
+/* Магазин персонажів */
+#characters {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#characterShop {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.characterItem {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.characterItem:hover {
+    transform: scale(1.05);
+}
+
+.characterItem img {
+    width: 100px;
+}
+
+.characterItem p {
+    margin: 10px 0 0 0;
+    font-size: 1.2em;
+    color: #2d5986;
+}
