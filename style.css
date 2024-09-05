@@ -184,3 +184,9 @@ button:hover {
     background-color: #4caf50;
     border-radius: 10px;
 }
+
+.thumb{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

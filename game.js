@@ -6,7 +6,7 @@ let currentCharacter = 0;
 let ownedCharacters = [0];  // Початковий персонаж є купленим за замовчуванням
 let fuel = 100; // Початковий рівень палива
 let maxFuel = 100; // Максимальний рівень палива
-let fuelRecoveryInterval = 500; // Інтервал відновлення палива в мілісекундах
+let fuelRecoveryInterval = 1000; // Інтервал відновлення палива в мілісекундах
 const characters = [
     { name: "Character 1", img: "./photo/a8bbf7fc-3591-4cbe-960f-efd348858748.png", cost: 0, power: 1, fuelBonus: 0 },
     { name: "Character 2", img: "./photo/OIG1.png", cost: 200, power: 5, fuelBonus: 50 },
@@ -161,6 +161,8 @@ function recoverFuel() {
         updateFuelBar();
     }
 }
+
+
 
 // Відновлення палива кожні fuelRecoveryInterval мілісекунд
 setInterval(recoverFuel, fuelRecoveryInterval);
