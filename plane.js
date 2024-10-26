@@ -8,17 +8,15 @@ let fuel = 100; // Початковий рівень палива
 let maxFuel = 100; // Максимальний рівень палива
 let fuelRecoveryInterval = 500; // Інтервал відновлення палива в мілісекундах
 const characters = [
-    { name: "Character 1", img: "./photo/a8bbf7fc-3591-4cbe-960f-efd348858748.png", cost: 0, power: 1, fuelBonus: 0 },
-    { name: "Character 2", img: "./photo/OIG1.png", cost: 200, power: 5, fuelBonus: 50 },
-    { name: "Character 3", img: "./photo/OI1.png.jpg", cost: 500, power: 10, fuelBonus: 100 },
-    { name: "Character 4", img: "./photo/1223.png", cost: 1000, power: 20, fuelBonus: 200 },
-    { name: "Character 5", img: "./photo/11111.png", cost: 2000, power: 50, fuelBonus: 300 },
-    { name: "Character 6", img: "./photo/12321`2.png", cost: 5000, power: 100, fuelBonus: 500 },
-    { name: "Character 7", img: "./photo/123123214342343242343423.png", cost: 10000, power: 200, fuelBonus: 1000 },
-    { name: "Character 8", img: "./photo/1111111111111111111111111111111111111111111111111111111111.png", cost: 50000, power: 500, fuelBonus: 2000 },
+    { name: "Character 1", img: "./photo/121.png", cost: 0, power: 1, fuelBonus: 0 },
+    { name: "Character 2", img: "/photo/212.png", cost: 200, power: 5, fuelBonus: 50 },
+    { name: "Character 3", img: "./photo/312.png", cost: 500, power: 10, fuelBonus: 100 },
+    { name: "Character 4", img: "./photo/412.png", cost: 1000, power: 20, fuelBonus: 200 },
+    { name: "Character 5", img: "./photo/5.png", cost: 2000, power: 50, fuelBonus: 300 },
+    { name: "Character 6", img: "./photo/6.png", cost: 5000, power: 100, fuelBonus: 500 },
+    { name: "Character 7", img: "./photo/7.png", cost: 10000, power: 200, fuelBonus: 1000 },
+    { name: "Character 8", img: "./photo/8.png", cost: 50000, power: 500, fuelBonus: 2000 },
 ];
-
-
 
 // Функція для визначення типу пристрою
 function detectDevice() {
@@ -57,9 +55,28 @@ function upgradeFuelRecovery() {
         alert("Not enough coins!");
     }
 }
+// Оновлення статистики в localStorage
+function updateStats() {
+    localStorage.setItem('totalCoins', coins);
+    localStorage.setItem('clickPower', clickPower);
+    localStorage.setItem('charactersUnlocked', ownedCharacters.length);
+    localStorage.setItem('fuelRecoveryLevel', fuelRecoveryInterval);
+}
 
-
-
+// Викликати updateStats() після кожної важливої події
+function addCoins() {
+    if (fuel > 0) {
+        coins += clickPower;
+        fuel -= fuelDecreaseRate;
+        if (fuel < 0) fuel = 0;
+        updateFuelBar();
+        document.getElementById('coinCount').innerText = coins;
+        showCoinGain();
+        updateStats();  // Оновлення статистики
+    } else {
+        alert("Out of fuel! Wait for it to refill.");
+    }
+}
 
 function initCharacterShop() {
     const shop = document.getElementById('characterShop');
@@ -190,4 +207,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
     initCharacterShop();
     updateOwnedCharacters();  // Оновлюємо список персонажів на початку гри
 });
-

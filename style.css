@@ -1,4 +1,47 @@
 /* Загальний стиль сторінки */
+/* Стилізація навігації */
+:root {
+    --background-color: #f0f4f8;
+    --text-color: #333;
+    --heading-color: #4b79a1;
+    --button-bg-color: #4b79a1;
+    --button-hover-bg-color: #375a7f;
+    --box-shadow-color: rgba(0, 0, 0, 0.1);
+    --fuel-bar-bg-color: #ddd;
+    --fuel-bar-fill-color: #4caf50;
+}
+.navbar {
+    background-color: var(--button-bg-color);
+    box-shadow: 0 4px 10px var(--box-shadow-color);
+    padding: 20px 0;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    text-transform: uppercase;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--button-hover-bg-color);
+    box-shadow: 0 6px 12px var(--box-shadow-color);
+}
 body {
     background-color: #f0f4f8;
     text-align: center;
